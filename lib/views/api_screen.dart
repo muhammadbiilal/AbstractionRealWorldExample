@@ -35,7 +35,7 @@ class _ApiScreenState extends State<ApiScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Abstraction with MVVM")),
+      appBar: AppBar(title: const Text("Abstraction with MVVM")),
       body: Column(
         children: [
           Row(
@@ -43,18 +43,18 @@ class _ApiScreenState extends State<ApiScreen> {
             children: [
               ElevatedButton(
                 onPressed: fetchUserData,
-                child: Text("Fetch Users"),
+                child: const Text("Fetch Users"),
               ),
               ElevatedButton(
                 onPressed: fetchProductData,
-                child: Text("Fetch Products"),
+                child: const Text("Fetch Products"),
               ),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             _title,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           Expanded(
             child: ListView.builder(
@@ -63,8 +63,16 @@ class _ApiScreenState extends State<ApiScreen> {
                 var item = _data[index];
                 return Card(
                   child: ListTile(
-                    title: Text(item.name ?? item.title),
-                    subtitle: Text(item.email ?? item.body ?? ""),
+                    title: Text(
+                      item is UserModel
+                          ? item.name
+                          : (item is ProductModel ? item.title : ""),
+                    ),
+                    subtitle: Text(
+                      item is UserModel
+                          ? item.email
+                          : (item is ProductModel ? item.body : ""),
+                    ),
                   ),
                 );
               },

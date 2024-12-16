@@ -1,6 +1,8 @@
 {
     "cSpell.words": [
         "abstractionrealworldexample",
+        "MVVM",
         "viewmodel"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
